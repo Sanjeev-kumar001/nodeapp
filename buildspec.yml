@@ -12,16 +12,15 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...          
-      - docker build -t sample-repo .
-      - docker tag sample-repo:latest 502193727466.dkr.ecr.us-east-1.amazonaws.com/sample-repo:latest
-     
+      - docker build -t noderepo .
+      - docker tag noderepo:latest 502193727466.dkr.ecr.us-east-1.amazonaws.com/noderepo:latest
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push 502193727466.dkr.ecr.us-east-1.amazonaws.com/sample-repo:latest
+      - docker push 502193727466.dkr.ecr.us-east-1.amazonaws.com/noderepo:latest
       - echo Writing image definitions file...
-      - printf '[{"name":"my-service","imageUri":"502193727466.dkr.ecr.us-east-1.amazonaws.com/sample-repo:latest"}]' 502193727466.dkr.ecr.us-east-1.amazonaws.com/sample-repo:latest > imagedefinitions.json
+      - printf '[{"name":"node-container","imageUri":"502193727466.dkr.ecr.us-east-1.amazonaws.com/noderepo:latest"}]' 502193727466.dkr.ecr.us-east-1.amazonaws.com/noderepo:latest > imagedefinitions.json
 
 artifacts:
     files:
